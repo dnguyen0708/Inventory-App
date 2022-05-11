@@ -1,0 +1,30 @@
+<% layout("layout/layout") %>
+<div class="h-10 d-inline-block text-center" style="width: 100%; background-color: rgba(0,0,255,.1)">
+    <h1><%= product.name %> </h1>
+</div>
+<div class="container d-flex flex-column align-items-center justify-content-center">
+    <h2>Do you really want to delete this Product?</h2>
+    <div class="card h-100 mt-3" style="width: 18rem;">
+        <img class="card-img-top" src="<%= product.image.thumbnail %>" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title"><%= product.name %> </h5>
+            <p class="card-text"><%= product.description %> </p>
+            <a href="<%=product.category.url %>">
+                <p class="card-text"><%= product.category.name %> </p>
+            </a>
+            <p class="card-text">Price: $<%= product.price %> </p>
+            <p class="card-text">Instock: <%= product.inStock %> </p>
+        </div>
+    </div>
+</div>
+<div class="container text-center mt-3">
+        <form action="" method="POST">
+            <div class="form-group">
+                <input class="form-control" type="hidden" 
+                name="productid" id="productid" value="<%=product._id%>" required>
+                <input class="form-control" type="hidden" 
+                name="imagename" id="imagename" value="<%=product.image.filename %>" required>      
+            </div>
+            <button class="btn btn-primary" type="submit">Delete</button>
+        </form>
+</div>

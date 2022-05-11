@@ -1,0 +1,34 @@
+<% layout("layout/layout") %>
+<div class="h-10 d-inline-block text-center" style="width: 100%; background-color: rgba(0,0,255,.1)">
+    <h1><%= category.name %> </h1>
+</div>
+<div class="container text-center">
+    <% if(products.length){ %> 
+    <div class="row justify-content-center text-center">
+        <h2>You must remove all product(s) before you cant delete this category</h2>
+        <% for(let p of products){ %>
+            <div class="col-sm-4 p-3">
+                <a href="<%= p.url %>">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="..." alt="Card image cap">
+                        <div class="card-body">
+                        <h5 class="card-title"><%= p.name %> </h5>
+                    </div>
+                  </div>
+                </a>
+            </div>
+        <% } %> 
+    </div>
+    <% }else{ %>
+        <h2>Do you really want to delete this Category?</h2>
+        <form action="" method="POST">
+            <div class="form-group">
+                <input class="form-control" type="hidden" 
+                name="categoryid" id="categoryid" value="<%=category._id%>" required>    
+            </div>
+            <input class="form-control" type="hidden" 
+            name="imagename" id="imagename" value="<%=category.image.filename %>" required>   
+            <button class="btn btn-primary" type="submit">Delete</button>
+        </form>
+    <% } %> 
+</div>

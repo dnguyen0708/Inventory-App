@@ -1,0 +1,27 @@
+<% layout("layout/layout") %>
+<div class="h-10 d-inline-block text-center" style="width: 100%; background-color: rgba(0,0,255,.1)">
+    <h1><%= title %> </h1>
+</div>
+    <div class="container d-flex justify-content-center">
+        <div class="card h-100 mt-3" style="width: 18rem;">
+            <img class="card-img-top" src="<%= product.image.thumbnail %>" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title"><%= product.name %> </h5>
+                <p class="card-text"><%= product.description %> </p>
+                <a href="<%=product.category.url %>">
+                    <p class="card-text"><%= product.category.name %> </p>
+                </a>
+                <p class="card-text">Price: $<%= product.price %> </p>
+                <p class="card-text">Instock: <%= product.inStock %> </p>
+            </div>
+        </div>
+    </div>
+
+<div class="d-flex justify-content-center flex-row mt-3">
+    <a href="<%= product.url %>/update">
+    <button class="btn btn-info text-light">Update</button>
+    </a>
+    <a href="<%= product.url %>/delete">
+    <button class="btn btn-danger ms-3">Delete</button>
+    </a>
+</div>

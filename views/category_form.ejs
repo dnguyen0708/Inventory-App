@@ -1,0 +1,47 @@
+<% layout("layout/layout") %>
+<div class="h-10 d-inline-block text-center position-relative" style="width: 100%; background-color: rgba(0,0,255,.1)">
+  <h1><%= title %> </h1>
+</div>
+<div class="container d-flex flex-column align-items-center">
+  <% if(typeof category != 'undefined'){ %> 
+      <div class="col-sm-4 p-3">
+              <div class="card" style="width: 18rem;">
+                  <img class="card-img-top" src="<%= category.image.thumbnail %>" alt="Card image cap">
+                  <div class="card-body">
+                    <h5 class="card-title"><%= category.name %> </h5>
+                    <p class="card-text"><%= category.description %> </p>
+              </div>
+        </div>
+    </div>
+    <% } %> 
+  <div class="container">
+    <form method="post" action="" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" name="name" aria-describedby="name" required
+        placeholder="Enter Name" value="<%=typeof category == 'undefined' ? '' : category.name %>">
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <input type="text" class="form-control" id="description" name="description" required
+        placeholder="description"  value="<%=typeof category == 'undefined' ? '' : category.description %>">
+      </div>
+      <input class="form-control mt-3" type="file" name="image" id="image" 
+              <%= typeof category == 'undefined' ? 'required' : '' %> >
+      <input class="form-control" type="hidden" 
+      name="imagename" id="imagename" value="<%=typeof category == 'undefined' ? '' : category.image.filename %>" required>
+      <input class="form-control" type="hidden" 
+      name="imageurl" id="imageurl" value="<%=typeof category == 'undefined' ? '' : category.image.url %>" required>        
+      <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
+    <ul>
+      <% if(typeof(errors) !='undefined' ){ %>
+          <% for(let err of errors){ %>
+              <li>
+                  <%= err.msg %>
+              </li>
+          <% } %>
+      <% } %>
+    </ul>
+  </div>
+</div>

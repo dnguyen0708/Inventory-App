@@ -1,0 +1,26 @@
+<% layout("layout/layout") %>
+<div class="h-10 d-inline-block text-center position-relative" style="width: 100%; background-color: rgba(0,0,255,.1)">
+    <h1><%= title %> </h1>
+</div>
+<div class="text-center mt-3">
+    <a href="/category/create" >
+        <button type="button" class="btn btn-primary">ADD CATEGORY</button>
+    </a>
+</div>
+<div class="container">
+    <div class="row justify-content-center">
+        <% for(let cat of category){ %>
+            <div class="col-sm-4 p-3">
+                <a href="<%= cat.url %>">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="<%= cat.image.thumbnail %>" alt="Card image cap">
+                        <div class="card-body">
+                        <h5 class="card-title"><%= cat.name %> </h5>
+                        <p class="card-text"><%= cat.description %> </p>
+                    </div>
+                  </div>
+                </a>
+            </div>
+        <% } %> 
+    </div>
+</div>

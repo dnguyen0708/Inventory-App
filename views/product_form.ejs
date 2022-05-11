@@ -1,0 +1,53 @@
+<% layout("layout/layout") %>
+
+<div class="container">
+  <h1><%= title %> </h1>
+    <form method="post" action="" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" class="form-control" id="name" name="name" aria-describedby="name" required
+          placeholder="Enter Name" value="<%=typeof product == 'undefined' ? '' : product.name %>">
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <input type="text" class="form-control" id="description" name="description" required
+          placeholder="description"  value="<%=typeof product == 'undefined' ? '' : product.description %>">
+        </div>
+        <div class="form-group">
+            <label for="price">Price: </label>
+            <input type="number" class="form-control" id="price" name="price" step="0.01" min="1" max="10000000" required
+            placeholder="6.99"  value="<%=typeof product == 'undefined' ? '' : product.price %>">
+        </div>
+        <div class="form-group">
+            <label for="inStock">Instock: </label>
+            <input type="number" class="form-control" id="inStock" name="inStock" required
+            placeholder="13"  value="<%=typeof product == 'undefined' ? '' : product.inStock %>"
+            min="1" max="1000">
+        </div>
+        <input class="form-control mt-3" type="file" name="image" id="image" <%= typeof product == 'undefined' ? 'required' : '' %>>
+        <input class="form-control" type="hidden" 
+        name="imagename" id="imagename" value="<%=typeof product == 'undefined' ? '' : product.image.filename %>" required>
+        <input class="form-control" type="hidden" 
+        name="imageurl" id="imageurl" value="<%=typeof product == 'undefined' ? '' : product.image.url %>" required>  
+        <p>Pick a Category</p>
+        <% for(let cat of category){ %>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="category" id="<%=cat.name %>"
+                <%= typeof cat.checked != 'undefined' ? "checked" : false %> value="<%=cat._id %>" required>
+                <label class="form-check-label" for="<%= cat.name %>">
+                  <%= cat.name %> 
+                </label>
+              </div>
+        <% } %> 
+        <button type="submit" class="btn btn-primary mt-3">Submit</button>
+      </form>
+      <ul>
+        <% if(typeof(errors) !='undefined' ){ %>
+            <% for(let err of errors){ %>
+                <li>
+                    <%= err.msg %>
+                </li>
+            <% } %>
+        <% } %>
+    </ul>
+</div>
