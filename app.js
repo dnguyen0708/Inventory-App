@@ -11,8 +11,8 @@ var indexRouter = require('./routes/index');
 var productsRouter = require('./routes/products');
 var categoriesRouter = require('./routes/categories');
 const ejsMate = require('ejs-mate');
-var compression = require('compression');
-var helmet = require('helmet');
+// var compression = require('compression');
+// var helmet = require('helmet');
 var app = express();
 
 // view engine setup
@@ -27,8 +27,8 @@ mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true});
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-app.use(compression()); //Compress all routes
-app.use(helmet());
+// app.use(compression()); //Compress all routes
+// app.use(helmet());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
