@@ -34,6 +34,11 @@ const ProductSchema = new Schema(
             type:Number,
             require:true
         },
+        owner:{
+            type: Schema.Types.ObjectId,
+            ref: 'User',
+            required: true
+        },
         image: ImageSchema
     }
 );

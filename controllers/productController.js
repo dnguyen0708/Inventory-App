@@ -1,5 +1,6 @@
 const Product = require('../models/product');
 const Category = require('../models/category');
+const User = require('../models/user');
 const { body, validationResult} = require('express-validator');
 const multer = require('multer');
 const { storage, cloudinary  } = require('../cloudinary');
@@ -49,6 +50,7 @@ exports.product_create_post = [
                 category: req.body.category,
                 price:req.body.price,
                 inStock:req.body.inStock,
+                owner:res.locals.currentUser,
                 image: {
                     url: req.file.path,
                     filename: req.file.filename
@@ -133,6 +135,7 @@ exports.product_update_post = [
                     category: req.body.category,
                     price:req.body.price,
                     inStock:req.body.inStock,
+                    owner:res.locals.currentUser,
                     image: image,
                     _id: req.params.id
                 }

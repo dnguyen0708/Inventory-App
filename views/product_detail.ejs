@@ -16,7 +16,7 @@
             </div>
         </div>
     </div>
-
+<% if(currentUser && currentUser.equals(product.owner._id)) {%> 
 <div class="d-flex justify-content-center flex-row mt-3">
     <a href="<%= product.url %>/update">
     <button class="btn btn-info text-light">Update</button>
@@ -25,3 +25,4 @@
     <button class="btn btn-danger ms-3">Delete</button>
     </a>
 </div>
+<% } %>
